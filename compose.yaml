@@ -1,0 +1,32 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      PUBLIC_ORIGIN: https://${DOMAIN:?Set DOMAIN in .env}
+      SMS_RU_API_ID: ${SMS_RU_API_ID:-}
+      SMS_RU_SENDER: ${SMS_RU_SENDER:-}
+      TRUST_PROXY: '1'
+    volumes:
+      - accounts:/app/.app-data
+      - catalog:/app/.catalog-cache
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env}
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+volumes:
+  accounts:
+  catalog:
+  caddy_data:
+  caddy_config:

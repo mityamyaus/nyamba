@@ -1,0 +1,7 @@
+*
+!dist/
+!dist/**
+!lib/
+!lib/**
+!server.cjs
+!Dockerfile

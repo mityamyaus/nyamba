@@ -1,2 +1,14 @@
 .sites-runtime/
 *.tar.gz
+.catalog-cache/
+.app-data/
+.env
+.env.local
+android/.gradle/
+android/**/build/
+android/local.properties
+*.jks
+*.keystore
+artifacts/
+node_modules/
+.openai/
