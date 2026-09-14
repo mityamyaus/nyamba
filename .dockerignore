@@ -5,3 +5,6 @@
 !lib/**
 !server.cjs
 !Dockerfile
+
+!data/
+!data/**

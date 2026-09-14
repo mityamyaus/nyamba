@@ -1,0 +1,6 @@
+Recipe text in wikibooks.sqlite and ../dist/wiki-recipes.json:
+Copyright: contributors to Russian Wikibooks. Each record contains its source revision and author-history URL.
+License: Creative Commons Attribution-ShareAlike 4.0 International.
+https://creativecommons.org/licenses/by-sa/4.0/
+Changes: formatting converted from wikitext to text blocks; images, presentation templates and reference apparatus omitted. Recipe instructions are not rewritten.
+This notice concerns recipe text, not application source code.

@@ -19,6 +19,7 @@ const server=http.createServer(async(req,res)=>{
    else if(name==='/api/auth/code'&&req.method==='POST')out=await auth.requestCode(body.phone,key);
    else if(name==='/api/auth/verify'&&req.method==='POST'){const result=await auth.verify(body.challengeId,body.code,key);res.setHeader('Set-Cookie','meal_session='+result.token+'; HttpOnly; SameSite=Strict; Path=/; Max-Age=604800'+secureCookie);out={user:result.user}}
    else if(name==='/api/auth/logout'&&req.method==='POST'){out=await auth.logout(token);res.setHeader('Set-Cookie','meal_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0'+secureCookie)}
+   else if(name==='/api/recipes'&&req.method==='GET')out=require('./lib/recipe-library.cjs').recipeLibrary(url);
    else if(name==='/api/cities'&&req.method==='GET')out=await maps.searchCities(url.searchParams.get('q'));
    else if(name==='/api/maps/config'&&req.method==='GET')out={tileUrl:maps.TILE};
    else if(name==='/api/maps/nearby'&&req.method==='GET'){if(!url.searchParams.has('lat')||!url.searchParams.has('lon'))throw Error('Нужна точка поиска.');out=await maps.nearby(Number(url.searchParams.get('lat')),Number(url.searchParams.get('lon')))}
