@@ -122,3 +122,14 @@ function planWithinBudget(s,revision=0){
  }
  const chosen=affordable||best;return {...chosen,budgetSearch:{tested,withinBudget:chosen.total<=s.budget}};
 }
+
+// A different prep rhythm changes which meal slots share one cooking batch.
+function changePrepDays(settings,days){
+ if(![1,3,4].includes(days))throw Error('Выберите готовку на 1, 3 или 4 дня.');
+ const next=normalizeSettings(settings);
+ if(next.prepDays===days)return next;
+ next.prepDays=days;
+ next.manualMeals={};
+ if(next.menuMode==='manual')next.menuMode='free';
+ return next;
+}
