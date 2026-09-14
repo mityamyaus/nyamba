@@ -69,3 +69,6 @@ for(const x of [
  {name:'Чечевичная намазка с картофелем',time:30,slots:[0,1,2],tags:['home','vegetarian'],ing:{lentil:80,carrot:90,onion:35,potato:180,oil:12},steps:['Красную чечевицу отварите до разваривания, лишнюю воду слейте. Картофель сварите отдельно.','Потушите мелко натёртую морковь и лук с маслом и водой до мягкости.','Разомните чечевицу с овощами вилкой. Подайте с отварным картофелем.'],emoji:'🫘',ideaUrl:'https://food.ru/recipes/220128-postnyi-pashtet-iz-krasnoi-chechevitsy-1719386780'},
  {name:'Картофельный салат с горошком и фасолью',time:30,slots:[1,2],tags:['salads','vegetarian'],ing:{potato:250,peas:100,beans:150,cucumber:100,oil:12},steps:['Сварите нарезанный картофель до мягкости, отдельно проварите горошек. Остудите.','Промойте консервированную фасоль и нарежьте огурец.','Соедините продукты с маслом. Готовьте для подачи сегодня, не для заморозки.'],emoji:'🥗',ideaUrl:'https://food.ru/recipes/269657-kartofelnyi-salat-so-svezhim-goroshkom-1766412945',freshOnly:true}
 ])recipes.push({...x,cooking:['stove'],expanded:true,plantBatch:!x.freshOnly});
+
+// Cuisine classification for the existing planner; source-library categories remain separate.
+recipes.forEach(r=>{r.cuisines=r.tags.includes('asian')?['asian']:r.tags.includes('pasta')?['european']:r.tags.includes('home')?['russian','european']:['european'];});

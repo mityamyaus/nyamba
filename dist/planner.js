@@ -5,7 +5,7 @@ const batchRecipeIds = new Set([0,1,4,5,7,9,11,14,15,16,18,20,21,23,24,25,26,27,
 recipes.forEach((r,i)=>{r.pregnancyReviewed=i<54||r.plantBatch===true;r.batchReady=batchRecipeIds.has(i)||r.plantBatch===true});
 function normalizeSettings(s){
  if(!s||typeof s!=='object')return s;
- const n=structuredClone(s);n.goals??=[n.mood||'varied'];n.categories??=[];n.prepDays??=1;n.menuMode??="budget";n.manualMeals??={};delete n.eggLimit;n.diets??=n.people?.map(()=>"ordinary")||[];n.allergies??=n.people?.map(()=>[])||[];n.excluded??=n.people?.map(()=>[])||[];n.pregnant??=Array.isArray(n.people)?n.people.map(()=>false):[];return n;
+ const n=structuredClone(s);n.cuisines??=[];n.goals??=[n.mood||'varied'];n.categories??=[];n.prepDays??=1;n.menuMode??="budget";n.manualMeals??={};delete n.eggLimit;n.diets??=n.people?.map(()=>"ordinary")||[];n.allergies??=n.people?.map(()=>[])||[];n.excluded??=n.people?.map(()=>[])||[];n.pregnant??=Array.isArray(n.people)?n.people.map(()=>false):[];return n;
 }
 function pregnancyActive(s){return s.pregnant?.some(Boolean)||false}
 function pregnancyAllowed(r,s){return !pregnancyActive(s)||(r.pregnancyReviewed===true&&!(r.risks||[]).length&&Object.keys(r.ing).every(k=>reviewedIngredients.has(k)))}
